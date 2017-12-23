@@ -5,11 +5,11 @@
 				<ion-icon name="create"></ion-icon>
 			</button>
 		</ion-buttons>
-		<ion-segment>
-			<ion-segment-button value="" (click)="kiemtra=true;">
+		<ion-segment [(ngModel)]="kiemtra">
+			<ion-segment-button value="true">
 				Mã điện
 			</ion-segment-button>
-			<ion-segment-button value="" (click)="kiemtra=false;">
+			<ion-segment-button value="false">
 		 		Dịch điện
 			</ion-segment-button>
 		</ion-segment>

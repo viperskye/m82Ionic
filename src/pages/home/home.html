@@ -6,10 +6,10 @@
 			</button>
 		</ion-buttons>
 		<ion-segment>
-			<ion-segment-button value="true" (click)="kiemtra=true;">
+			<ion-segment-button value="" (click)="kiemtra=true;">
 				Mã điện
 			</ion-segment-button>
-			<ion-segment-button value="false" (click)="kiemtra=false;">
+			<ion-segment-button value="" (click)="kiemtra=false;">
 		 		Dịch điện
 			</ion-segment-button>
 		</ion-segment>
@@ -44,40 +44,35 @@
 				<div *ngSwitchCase="'tc'">
 					<ion-item>
 						<ion-label color="primary" stacked>Nội dung bản điện</ion-label>
-						<ion-textarea [(ngModel)]="Textm82" name="Textm82" placeholder="Nhập nội dung bản điện vào đây ^^" rows="14" clearOnEdit="true"></ion-textarea>
+						<ion-textarea [(ngModel)]="Textm82" name="Textm82" placeholder="Nhập nội dung bản điện vào đây ^^" rows="5" clearOnEdit="true"></ion-textarea>
 					</ion-item>
 				</div>
 			</div>
 			<button ion-button full (click)="batdau();">Bắt đầu</button>
 		</form>
 		<div *ngSwitchCase="false"> 
-			<ion-grid *ngFor="let thutu of mang">
+			<ion-grid *ngFor="let thutu of mang" text-center>
 				<ion-row>
-					<ion-col text-center>{{obj.ObjDe[thutu*4+0]}}{{thutu}}</ion-col>
-					<ion-col text-center>{{obj.ObjDe[thutu*4+1]}}</ion-col>
-					<ion-col text-center>{{obj.ObjDe[thutu*4+2]}}</ion-col>
-					<ion-col text-center>{{obj.ObjDe[thutu*4+3]}}</ion-col>
+					<ion-col >{{obj.ObjDe[thutu*4+0]}}</ion-col>
+					<ion-col >{{obj.ObjDe[thutu*4+1]}}</ion-col>
+					<ion-col >{{obj.ObjDe[thutu*4+2]}}</ion-col>
+					<ion-col >{{obj.ObjDe[thutu*4+3]}}</ion-col>
 				</ion-row>
-				<ion-segment>
-				<ion-segment-button value="">
-				{{obj.ObjEn[thutu*4+0]}}
-				</ion-segment-button>
-				<ion-segment-button value="">
-				{{obj.ObjEn[thutu*4+1]}}
-				</ion-segment-button>
-				<ion-segment-button value="">
-				{{obj.ObjEn[thutu*4+2]}}
-				</ion-segment-button>
-				<ion-segment-button value="">
-				{{obj.ObjEn[thutu*4+3]}}
-				</ion-segment-button>
-				</ion-segment>
+				<ion-row>
+					<ion-col><button ion-button no-padding>
+					{{obj.ObjEn[thutu*4+0]}}
+					</button></ion-col>
+					<ion-col><button ion-button no-padding>
+					{{obj.ObjEn[thutu*4+1]}}
+					</button></ion-col>
+					<ion-col><button ion-button no-padding>
+					{{obj.ObjEn[thutu*4+2]}}
+					</button></ion-col>
+					<ion-col><button ion-button no-padding>
+					{{obj.ObjEn[thutu*4+3]}}
+					</button></ion-col>
+				</ion-row>
 			</ion-grid>
 		</div>
 	</div>
 </ion-content>
-<ion-footer no-border>
-	<ion-toolbar>
-		<ion-title>{{thongbao}}</ion-title>
-	</ion-toolbar>
-</ion-footer>

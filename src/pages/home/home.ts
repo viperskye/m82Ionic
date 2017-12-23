@@ -11,15 +11,12 @@ export class HomePage {
 	kiemtra: any = true;
 	Textm82: any;
 	StringCover: any;
-	thongbao: any = 'Code by Viperskye - Châu Văn Khánh';
+	thongbao: any = 'Code by Viperskye';
 	demnhom: Number;
 	db: any;
 	mang: any = [];
 	obj: any;
 	constructor(public navCtrl: NavController,public http: Http) {
-		this.getDb();
-	}
-	private getDb() {
 		if(typeof(Storage) != "undefined") {
 			if (localStorage.getItem("m82json") == null) {
 				var a = this;
@@ -45,10 +42,9 @@ export class HomePage {
 	}
 	batdau() {
    		this.kiemtra = false;
-   		this.thongbao = 'Hello';
    		this.Textm82= this.filter(this.Textm82);
    		console.log(this.Textm82);
-   		this.thuchanh(this);
+   		this.obj = this.thuchanh(this);
    		this.setMang();
    		console.log(this.obj);
    		console.log(this.mang);
@@ -87,11 +83,9 @@ export class HomePage {
 		for (i = 0; i < ObjString.length; i++) { 
 			TachNhom(ObjString[i],ObjString[i],1);
 		}
-		var returnobj = {ObjDe:ObjDe,ObjEn:ObjEn,demnhom:demnhom};
-		//hp.setMang(hp,returnobj);
-		hp.obj = returnobj;
+		var returnobj = {ObjDe:ObjDe,ObjEn:ObjEn,demnhom:demnhom}
 		console.log("thuchanh ok");
-		//return returnobj;
+		return returnobj;
 	}
    	public find(objects,tukhoa) {
    		var dem = objects.chu.length;

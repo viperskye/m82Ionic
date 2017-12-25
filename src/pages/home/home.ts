@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { LoadingController } from 'ionic-angular';
+import { ModalController, NavParams, ViewController } from 'ionic-angular';
 import { NavController } from 'ionic-angular';
 import { Http } from '@angular/http';
 
@@ -9,6 +11,7 @@ import { Http } from '@angular/http';
 export class HomePage {
 	selectTab: any = 'tc';
 	kiemtra: any = true;
+	page: boolean = true;
 	Textm82: any;
 	StringCover: any;
 	thongbao: any = 'Code by Viperskye';
@@ -16,7 +19,7 @@ export class HomePage {
 	db: any;
 	mang: any = [];
 	obj: any;
-	constructor(public navCtrl: NavController,public http: Http) {
+	constructor(public navCtrl: NavController,public loadingCtrl: LoadingController, public http: Http, public modalCtrl: ModalController) {
 		if(typeof(Storage) != "undefined") {
 			if (localStorage.getItem("m82json") == null) {
 				var a = this;
@@ -41,13 +44,15 @@ export class HomePage {
 		return stringFomat;
 	}
 	batdau() {
-   		this.kiemtra = false;
    		this.Textm82= this.filter(this.Textm82);
-   		console.log(this.Textm82);
    		this.obj = this.thuchanh(this);
    		this.setMang();
-   		console.log(this.obj);
-   		console.log(this.mang);
+   		var profileModal = this.modalCtrl.create(Profile, { mang: this.mang,obj: this.obj });
+   		profileModal.present();
+   	}
+   	public changePage(work) {
+   		work == true ? this.kiemtra = true : this.kiemtra = false;
+   		console.log(this.page);
    	}
    	private thuchanh(hp) {
    		console.log('Thực hành');
@@ -72,6 +77,7 @@ export class HomePage {
 				}
 			} else {
 				TachNhom(text2.slice(0,text2.length - kt),text2,kt);
+				
 	        }
 			return true;
 		}
@@ -99,11 +105,61 @@ export class HomePage {
    	}
    	private setMang() {
    		var dkien = Math.ceil(this.obj.demnhom/4);
-   		var i;
-   		this.mang = [];
-		for (i = 0; i < dkien; i++) { 
-			this.mang.push(i);
-		}
+   		this.mang = Array.apply(null, {length: dkien}).map(Number.call, Number)
 		console.log("setMang ok");
    	}
+}
+@Component({
+	template: `
+	<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Nội dung
+    </ion-title>
+    <ion-buttons left>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">Cancel</span>
+        <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+	<ion-content padding>
+		<ion-grid *ngFor="let thutu of mang" text-center>
+			<ion-row>
+				<ion-col >{{obj.ObjDe[thutu*4+0]}}</ion-col>
+				<ion-col >{{obj.ObjDe[thutu*4+1]}}</ion-col>
+				 <div class="clearfix" ng-if="$index % 3 == 0"></div>
+				<ion-col >{{obj.ObjDe[thutu*4+2]}}</ion-col>
+				<ion-col >{{obj.ObjDe[thutu*4+3]}}</ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col><button ion-button no-padding>
+				{{obj.ObjEn[thutu*4+0]}}
+				</button></ion-col>
+				<ion-col><button ion-button no-padding>
+				{{obj.ObjEn[thutu*4+1]}}
+				</button></ion-col>
+				<ion-col><button ion-button no-padding>
+				{{obj.ObjEn[thutu*4+2]}}
+				</button></ion-col>
+				<ion-col><button ion-button no-padding>
+				{{obj.ObjEn[thutu*4+3]}}
+				</button></ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-content>
+	`
+})
+export class Profile {
+	mang: number;
+	obj: any;
+	constructor(public params: NavParams,public viewCtrl: ViewController) {
+		this.mang = this.params.data.mang;
+		this.obj = this.params.data.obj;
+		console.log(params);
+	}
+	dismiss() {
+		this.viewCtrl.dismiss();
+	}
 }

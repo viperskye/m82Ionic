@@ -1,54 +1,58 @@
 <ion-header>
-	<ion-toolbar>
-		<ion-buttons left>
-			<button ion-button icon-only>
-				<ion-icon name="create"></ion-icon>
-			</button>
-		</ion-buttons>
-		<ion-segment [(ngModel)]=page>
-			<ion-segment-button value="true" (ionSelect)="changePage(true);">
-				Mã điện
-			</ion-segment-button>
-			<ion-segment-button value="false" (ionSelect)="changePage(false);">
-		 		Dịch điện
-			</ion-segment-button>
-		</ion-segment>
-		<ion-buttons right>
-			<button ion-button icon-only>
-				<ion-icon name="more"></ion-icon>
-			</button>
-		</ion-buttons>
-	</ion-toolbar>	
+  <ion-toolbar>
+    <ion-buttons left>
+      <button ion-button icon-only>
+        <ion-icon name="create"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-segment [(ngModel)]=page>
+      <ion-segment-button value="true" (ionSelect)="changePage(true);">
+        Mã điện
+      </ion-segment-button>
+      <ion-segment-button value="false" (ionSelect)="changePage(false);">
+         Dịch điện
+      </ion-segment-button>
+    </ion-segment>
+    <ion-buttons right>
+      <button ion-button icon-only>
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>  
 </ion-header>
 <ion-content padding>
-	<div [ngSwitch]="kiemtra">
-		<form id="mTNGM82-form1" class="list " name="m82form" *ngSwitchCase="true">
-			<ion-item>
-				<ion-label> 5 vành khóa / 1 vành khóa</ion-label>
-				<ion-toggle checked="false"></ion-toggle>
-			</ion-item>
-			<div padding>
-				<ion-segment [(ngModel)]="selectTab" name="selectTab">
-					<ion-segment-button value="cb">
-					Cơ bản
-					</ion-segment-button>
-					<ion-segment-button value="nc">
-					Nâng cao
-					</ion-segment-button>
-					<ion-segment-button value="tc">
-					Tùy chọn
-					</ion-segment-button>
-				</ion-segment>
-			</div>
-			<div [ngSwitch]="selectTab">
-				<div *ngSwitchCase="'tc'">
-					<ion-item>
-						<ion-label color="primary" stacked>Nội dung bản điện</ion-label>
-						<ion-textarea [(ngModel)]="Textm82" name="Textm82" placeholder="Nhập nội dung bản điện vào đây ^^" rows="5" clearOnEdit="true"></ion-textarea>
-					</ion-item>
-				</div>
-			</div>
-			<button ion-button full (click)="batdau();">Bắt đầu</button>
-		</form>
-	</div>
+  <div [ngSwitch]="kiemtra">
+    <form id="mTNGM82-form1" class="list " name="m82form" *ngSwitchCase="true">
+      <ion-item>
+        <ion-label> 5 vành khóa / 1 vành khóa</ion-label>
+        <ion-toggle checked="false"></ion-toggle>
+      </ion-item>
+      <div padding>
+        <ion-segment [(ngModel)]="selectTab" name="selectTab">
+          <ion-segment-button value="cb">
+          Cơ bản
+          </ion-segment-button>
+          <ion-segment-button value="nc">
+          Nâng cao
+          </ion-segment-button>
+          <ion-segment-button value="tc">
+          Tùy chọn
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+      <div [ngSwitch]="selectTab">
+        <div *ngSwitchCase="'tc'">
+          <ion-item>
+            <ion-label color="primary" stacked>Nội dung bản điện</ion-label>
+            <ion-textarea [(ngModel)]="Textm82" name="Textm82" placeholder="Nhập nội dung bản điện vào đây ^^" rows="5" clearOnEdit="true"></ion-textarea>
+          </ion-item>
+        </div>
+      </div>
+    </form>
+  </div>
 </ion-content>
+<ion-footer no-border>
+  <ion-toolbar>
+    <button ion-button full (click)="batdau();">Bắt đầu</button>
+  </ion-toolbar>
+</ion-footer>

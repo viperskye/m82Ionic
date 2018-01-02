@@ -20,7 +20,7 @@
     </ion-buttons>
   </ion-toolbar>  
 </ion-header>
-<ion-content padding>
+<ion-content padding style="background-color:#E6F1F8;">
   <div [ngSwitch]="kiemtra">
     <form id="mTNGM82-form1" class="list " name="m82form" *ngSwitchCase="true">
       <ion-item>
@@ -49,10 +49,67 @@
         </div>
       </div>
     </form>
+	<div *ngSwitchCase="false">
+	    <ion-grid *ngFor="let thutu of mang" text-center>
+	      <ion-row color="dark">
+	        <ion-col>
+	        	<ion-input text-center [(ngModel)]="obj.ObjEn[thutu*4+0]" type="tel" maxlength="5" placeholder="hello"></ion-input>
+	        </ion-col>
+	        <ion-col>
+	        	<ion-input text-center [(ngModel)]="obj.ObjEn[thutu*4+1]" type="tel" maxlength="5" placeholder="hello"></ion-input>
+	        </ion-col>
+	        <ion-col>
+	        	<ion-input text-center [(ngModel)]="obj.ObjEn[thutu*4+2]" type="tel" maxlength="5" placeholder="hello"></ion-input>
+	        </ion-col>
+	        <ion-col>
+	        	<ion-input text-center [(ngModel)]="obj.ObjEn[thutu*4+3]" type="tel" maxlength="5" placeholder="hello"></ion-input>
+	        </ion-col>
+	      </ion-row>
+	      <ion-row>
+	        <ion-col>
+	          <button ion-button no-padding>{{obj.ObjDe[thutu*4+0]}}
+	          </button>
+	        </ion-col>
+	        <ion-col>
+	          <button ion-button no-padding>{{obj.ObjDe[thutu*4+1]}}
+	          </button>
+	        </ion-col>
+	        <ion-col>
+	          <button ion-button no-padding>{{obj.ObjDe[thutu*4+2]}}
+	          </button>
+	        </ion-col>
+	        <ion-col>
+	          <button ion-button no-padding>{{obj.ObjDe[thutu*4+3]}}
+	          </button>
+	        </ion-col>
+	      </ion-row>
+	    </ion-grid>
+    </div>
   </div>
 </ion-content>
 <ion-footer no-border>
   <ion-toolbar>
-    <button ion-button full (click)="batdau();">Bắt đầu</button>
+  	<div [ngSwitch]="kiemtra">
+  		<button *ngSwitchCase="true" ion-button full (click)="batdau();">Bắt đầu</button>
+  		<ion-grid *ngSwitchCase="false" text-center>
+			<ion-row>
+				<ion-col>
+					<button icon-left ion-button block color="secondary" (click)="change(false);">
+						<ion-icon name="home"></ion-icon>
+						Trước
+					</button>
+				</ion-col>
+				<ion-col>
+					<ion-input text-center (ionChange)="hello();" [(ngModel)] = "search" type="tel" maxlength="5" placeholder="Nhập số vào đây ^^"></ion-input>
+				</ion-col>
+				<ion-col>
+					<button icon-right ion-button block color="secondary" (click)="change(true);">
+						Sau
+						<ion-icon name="home"></ion-icon>
+				</button>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+  	</div>
   </ion-toolbar>
 </ion-footer>

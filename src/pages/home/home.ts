@@ -14,7 +14,7 @@ export class HomePage {
 	@ViewChild(Content) content: Content;
 	selectTab: string = 'tc';
 	kiemtra: boolean = false;
-	page: boolean = false;
+	page: any = '1';
 	check:boolean = true;
 	Textm82: string;
 	dem: number= 0;
@@ -30,7 +30,6 @@ export class HomePage {
 				public modalCtrl: ModalController,
 				private toastCtrl: ToastController) {
 		console.log('ở đây trước');
-		this.page = true;
 	}
 	ionViewDidLoad() {
 		console.log('ở đây sau');
@@ -80,7 +79,7 @@ export class HomePage {
 			if(+this.demnhom%4 == 3) {
 				(+this.Arrlast(this.mang)*4+3 == this.demnhom) && this.mang.push(+this.mang[this.mang.length-1]+1);
 			}
-			this.content.scrollToBottom();
+			if(this.mang.length > 3) this.content.scrollToBottom();
 		}
 	}
 	private Arrlast(arr: any): any {
@@ -89,7 +88,7 @@ export class HomePage {
 	private createToast(message: string, toastCtrl: ToastController = this.toastCtrl): void {
 		let toast = toastCtrl.create({
 			message: message,
-			duration: 5000,
+			duration: 3000,
 			position: 'top'});
 		toast.onDidDismiss(() => {
 			console.log('Dismissed toast');
@@ -115,8 +114,7 @@ export class HomePage {
 		profileModal.present();
 		this.createToast('Đã mã '+this.obj.ObjEn.length.toString()+' nhóm điện');
 	}
-	public  changePage(work: boolean): void {
-		(work == true) ? this.kiemtra = true : this.kiemtra = false;
+	public  changePage(): void {
 		this.mang = [0];
 		this.obj = {"ObjDe": [],"ObjEn": []};
 		this.demnhom = 0;
@@ -181,6 +179,11 @@ export class HomePage {
 	private setMang(): void {
 		var dkien = Math.ceil(this.obj.demnhom/4);
 		this.mang = Array.apply(null, {length: dkien}).map(Number.call, Number);
+	}
+	public  info(): void {
+		console.log('ok');
+		this.createToast(`Ứng dụng mã dịch mật ngữ m82 - version 1.3`);
+		this.createToast('Code by viperskye - database by hungnguyenit');
 	}
 }
 @Component({

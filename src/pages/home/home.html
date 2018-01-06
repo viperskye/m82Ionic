@@ -6,14 +6,14 @@
       </button>
     </ion-buttons>
     <ion-segment [(ngModel)]=page>
-      <ion-segment-button value="true" (ionSelect)="changePage(true);">
+      <ion-segment-button value="1" (ionSelect)="changePage();">
         Mã điện
       </ion-segment-button>
-      <ion-segment-button value="false" (ionSelect)="changePage(false);">
+      <ion-segment-button value="2" (ionSelect)="changePage();">
          Dịch điện
       </ion-segment-button>
     </ion-segment>
-    <ion-buttons right>
+    <ion-buttons right (click)="info();">
       <button ion-button icon-only>
         <ion-icon name="more"></ion-icon>
       </button>
@@ -21,8 +21,8 @@
   </ion-toolbar>  
 </ion-header>
 <ion-content padding style="background-color:#E6F1F8;">
-  <div [ngSwitch]="kiemtra">
-    <form id="mTNGM82-form1" class="list " name="m82form" *ngSwitchCase="true">
+  <div [ngSwitch]="page">
+    <form id="mTNGM82-form1" class="list " name="m82form" *ngSwitchCase="1">
       <ion-item>
         <ion-label> 5 vành khóa / 1 vành khóa</ion-label>
         <ion-toggle checked="false"></ion-toggle>
@@ -49,7 +49,7 @@
         </div>
       </div>
     </form>
-	<div *ngSwitchCase="false">
+	<div *ngSwitchCase="2">
 	    <ion-grid *ngFor="let thutu of mang" text-center>
 	      <ion-row color="dark">
 	        <ion-col>
@@ -89,9 +89,9 @@
 </ion-content>
 <ion-footer no-border>
   <ion-toolbar>
-  	<div [ngSwitch]="kiemtra">
-  		<button *ngSwitchCase="true" ion-button full (click)="batdau();">Bắt đầu</button>
-  		<ion-grid *ngSwitchCase="false" text-center>
+  	<div [ngSwitch]="page">
+  		<button *ngSwitchCase="1" ion-button full (click)="batdau();">Bắt đầu</button>
+  		<ion-grid *ngSwitchCase="2" text-center>
 			<ion-row>
 				<ion-col>
 					<button icon-left ion-button block color="secondary" (click)="change(false);">

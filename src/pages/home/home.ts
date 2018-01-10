@@ -29,7 +29,6 @@ export class HomePage {
 				public http: Http, 
 				public modalCtrl: ModalController,
 				private toastCtrl: ToastController) {
-		console.log('ở đây trước');
 	}
 	ionViewDidLoad() {
 		console.log('ở đây sau');
@@ -181,7 +180,6 @@ export class HomePage {
 		this.mang = Array.apply(null, {length: dkien}).map(Number.call, Number);
 	}
 	public  info(): void {
-		console.log('ok');
 		this.createToast(`Ứng dụng mã dịch mật ngữ m82 - version 1.3`);
 		this.createToast('Code by viperskye - database by hungnguyenit');
 	}

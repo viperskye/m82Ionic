@@ -31,7 +31,6 @@ export class HomePage {
 				private toastCtrl: ToastController) {
 	}
 	ionViewDidLoad() {
-		console.log('ở đây sau');
 		if(typeof(Storage) != "undefined") {
 			if (localStorage.getItem("m82json") == null) {
 				this.http.get('assets/data/m82.json').subscribe((data) => {
